@@ -1,20 +1,19 @@
 #pragma once
-#include <string>
-#include <optional>
+#include <string_view>
 
-namespace fix::core {
+namespace fix::core::msg {
+using Type = std::string_view;
 
-enum class MsgType {
-    Logon,
-    Logout,
-    Heartbeat,
-    TestRequest,
-    NewOrderSingle,
-    ExecutionReport,
-    Unknown
-};
+inline constexpr Type Logon = "A";
+inline constexpr Type Logout = "5";
+inline constexpr Type Heartbeat = "0";
+inline constexpr Type TestRequest = "1";
+inline constexpr Type ResendRequest = "2";
+inline constexpr Type Reject = "3";
+inline constexpr Type SequenceReset = "4";
 
-std::optional<MsgType> parseMsgType(const std::string& value);
-std::string toString(MsgType type);
-
+constexpr bool is_admin(Type t) noexcept {
+  return t == Logon || t == Logout || t == Heartbeat || t == TestRequest ||
+         t == ResendRequest || t == Reject || t == SequenceReset;
 }
+}  // namespace fix::core::msg
