@@ -27,25 +27,18 @@ namespace fix::core::msg
   inline constexpr Type OrderMassCancelReport = "r";
 
   // Application messages: quote handling (client-initiated)
+  inline constexpr Type Quote = "S";
   inline constexpr Type QuoteCancel = "Z";
   inline constexpr Type QuoteRequest = "R";
+  inline constexpr Type QuoteRequestReject = "AG";
   inline constexpr Type QuoteResponse = "AJ";
 
   // Application messages: quote handling (server-initiated)
-  inline constexpr Type MassQuoteAcknowledgement = "b";
-  inline constexpr Type Quote = "S";
-  inline constexpr Type QuoteRequestReject = "AG";
-  inline constexpr Type QuoteAck = "CW";
   inline constexpr Type QuoteStatusReport = "AI";
+  inline constexpr Type MassQuoteAcknowledgement = "b";
+  inline constexpr Type QuoteAck = "CW";
 
   // Application messages: other
-  inline constexpr Type MarketDataRequest = "V";
-  inline constexpr Type MarketDataSnapshotFullRefresh = "W";
-  inline constexpr Type MarketDataIncrementalRefresh = "X";
-  inline constexpr Type MarketDataRequestReject = "Y";
-  inline constexpr Type TradingSessionStatus = "h";
-  inline constexpr Type SecurityDefinitionRequest = "c";
-  inline constexpr Type SecurityDefinition = "d";
   inline constexpr Type BusinessMessageReject = "j";
 
   constexpr bool is_admin(Type t) noexcept
@@ -59,4 +52,3 @@ namespace fix::core::msg
     return !is_admin(t);
   }
 }
-
