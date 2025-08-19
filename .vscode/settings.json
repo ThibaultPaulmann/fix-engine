@@ -1,4 +1,7 @@
 {
+    "terminal.integrated.env.linux": {
+        "SHELL": null
+    },
     "files.associations": {
         "string_view": "cpp",
         "optional": "cpp",

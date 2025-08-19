@@ -4,7 +4,7 @@
 
 namespace fix::core {
 
-void Message::clear() noexcept { fields_.clear(); }
+void Message::clear() { fields_.clear(); }
 
 void Message::reserve(std::size_t n) { fields_.reserve(n); }
 
