@@ -88,6 +88,9 @@ Parser::Result Parser::parse(std::string_view buf, Message& out) {
     cur = soh + 1;
   }
 
+  // Save trailer checksum field
+  out.set_view(CheckSum, std::string_view{buf.data() + bodyEnd + 3, 3});
+
   const std::size_t frame_size = bodyEnd + 7;
   return {Status::Ok, nullptr, 0, frame_size, std::string_view{buf.data(), frame_size}};
 }

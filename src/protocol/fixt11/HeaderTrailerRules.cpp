@@ -17,7 +17,6 @@ HeaderTrailerRules::validate(const fix::core::Message& m, bool outbound_from_ser
   if (outbound_from_server && !m.get_sv(tags::ApplVerID))
     v.push_back({tags::ApplVerID, "missing ApplVerID(1128) on server outbound"});
   if (!m.get_int(tags::CheckSum))    v.push_back({tags::CheckSum,     "missing CheckSum(10)"});
-
   return v;
 }
 

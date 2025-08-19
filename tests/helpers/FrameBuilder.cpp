@@ -39,7 +39,7 @@ std::string build_frame(const std::vector<std::pair<int, std::string>>& fields_i
     if (ec != std::errc{}) throw std::runtime_error("to_chars body_len failed");
     std::string digits(buf, ptr);
     std::string rep = "9=" + digits + std::string(1, SOH);
-    out.replace(pos9, 5, rep);
+    out.replace(pos9, pos9soh - pos9 + 1, rep);
   }
 
   // append 10=
