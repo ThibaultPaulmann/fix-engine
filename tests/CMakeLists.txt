@@ -24,6 +24,12 @@ target_link_libraries(test-protocol-header PRIVATE fix-protocol-fixt11 fix-core 
 target_compile_features(test-protocol-header PRIVATE cxx_std_23)
 add_test(NAME protocol-header COMMAND test-protocol-header)
 
+# -------- Application message views tests --------
+add_executable(test-application-messages protocol/ApplicationMessageTests.cpp)
+target_link_libraries(test-application-messages PRIVATE fix-protocol-fix50 fix-core fix-test-helpers)
+target_compile_features(test-application-messages PRIVATE cxx_std_23)
+add_test(NAME application-messages COMMAND test-application-messages)
+
 # -------- Engine session sequence tests --------
 add_executable(test-engine-session engine/SessionSeqTests.cpp)
 target_link_libraries(test-engine-session PRIVATE fix-engine fix-protocol-fixt11 fix-core fix-test-helpers)

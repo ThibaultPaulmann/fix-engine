@@ -59,6 +59,18 @@ target_include_directories(fix-protocol-fixt11
 )
 target_link_libraries(fix-protocol-fixt11 PUBLIC fix-core)
 
+# =================== fix-protocol-fix50 ===================
+add_library(fix-protocol-fix50 INTERFACE)
+add_library(fix::protocol::fix50 ALIAS fix-protocol-fix50)
+
+target_compile_features(fix-protocol-fix50 INTERFACE cxx_std_23)
+target_include_directories(fix-protocol-fix50
+  INTERFACE
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+target_link_libraries(fix-protocol-fix50 INTERFACE fix-core)
+
 # =================== fix-engine ===================
 add_library(fix-engine
   src/engine/InMemoryStore.cpp
@@ -89,7 +101,7 @@ if (FIX_ENABLE_LTO)
 endif()
 
 # ---- Install / Export ----
-install(TARGETS fix-core fix-protocol-fixt11 fix-engine
+install(TARGETS fix-core fix-protocol-fixt11 fix-protocol-fix50 fix-engine
   EXPORT FixTargets
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
