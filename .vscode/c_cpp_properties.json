@@ -5,7 +5,11 @@
             "intelliSenseMode": "linux-gcc-x64",
             "compilerPath": "/usr/bin/gcc",
             "includePath": [
-                "${workspaceFolder}"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/tests",
+                "/usr/include",
+                "/usr/local/include"
             ],
             "cStandard": "c23",
             "cppStandard": "c++23"
