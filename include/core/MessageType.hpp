@@ -13,9 +13,50 @@ namespace fix::core::msg
   inline constexpr Type Reject = "3";
   inline constexpr Type SequenceReset = "4";
 
+  // Application messages: order handling (client-initiated)
+  inline constexpr Type NewOrderSingle = "D";
+  inline constexpr Type OrderCancelRequest = "F";
+  inline constexpr Type OrderCancelReplaceRequest = "G";
+  inline constexpr Type OrderMassCancelRequest = "q";
+  inline constexpr Type NewOrderCross = "s";
+  inline constexpr Type CrossOrderCancelRequest = "u";
+
+  // Application messages: order handling (server-initiated)
+  inline constexpr Type ExecutionReport = "8";
+  inline constexpr Type OrderCancelReject = "9";
+  inline constexpr Type OrderMassCancelReport = "r";
+
+  // Application messages: quote handling (client-initiated)
+  inline constexpr Type QuoteCancel = "Z";
+  inline constexpr Type QuoteRequest = "R";
+  inline constexpr Type QuoteResponse = "AJ";
+
+  // Application messages: quote handling (server-initiated)
+  inline constexpr Type MassQuoteAcknowledgement = "b";
+  inline constexpr Type Quote = "S";
+  inline constexpr Type QuoteRequestReject = "AG";
+  inline constexpr Type QuoteAck = "CW";
+  inline constexpr Type QuoteStatusReport = "AI";
+
+  // Application messages: other
+  inline constexpr Type MarketDataRequest = "V";
+  inline constexpr Type MarketDataSnapshotFullRefresh = "W";
+  inline constexpr Type MarketDataIncrementalRefresh = "X";
+  inline constexpr Type MarketDataRequestReject = "Y";
+  inline constexpr Type TradingSessionStatus = "h";
+  inline constexpr Type SecurityDefinitionRequest = "c";
+  inline constexpr Type SecurityDefinition = "d";
+  inline constexpr Type BusinessMessageReject = "j";
+
   constexpr bool is_admin(Type t) noexcept
   {
     return t == Logon || t == Logout || t == Heartbeat || t == TestRequest ||
            t == ResendRequest || t == Reject || t == SequenceReset;
   }
-} // namespace fix::core::msg
+
+  constexpr bool is_application(Type t) noexcept
+  {
+    return !is_admin(t);
+  }
+}
+
